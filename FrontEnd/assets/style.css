@@ -129,6 +129,29 @@ li:hover, li a:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+.filtres {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+	margin-top: 3rem;
+}
+.btn {
+	padding: 0.5rem;
+	border-radius: 20px;
+	margin-right: 1rem;
+	min-width: 105px;
+	border: 2px solid #1D6154;
+	color: #1D6154;
+	font-weight: 600;
+	background-color: #FFFEF8;
+	cursor: pointer;
+}
+
+#btn_tous {
+	background-color: #1D6154;
+	color: #fff;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

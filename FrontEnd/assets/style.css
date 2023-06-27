@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -61,7 +62,10 @@ header {
 section {
 	margin: 50px 0
 }
-
+a {
+	text-decoration: none;
+	color: #000;
+}
 h1{
 	display: flex;
 	flex-direction: column;
@@ -95,7 +99,7 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+li:hover, li a:hover {
 	color: #B1663C;
 }
 #introduction {
@@ -139,7 +143,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -148,25 +152,27 @@ margin: auto;
 #contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form, #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	outline: none;
 }
-#contact label {
+#contact label, #login label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	outline: none;
 }
 
 input[type="submit"]{
@@ -178,11 +184,39 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+	cursor: pointer;
 }
 
+footer {
+	width: 100%;
+	
+
+
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	background-color: #fff;
+	padding: 1rem;
+	
 }
+
+#login{
+	width: 30%;
+	margin: auto;
+}
+
+#login h2 {
+	text-align: center;
+	margin-top: 150px;
+	
+}
+
+#login a {
+	text-decoration: underline;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
 

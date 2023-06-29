@@ -146,11 +146,14 @@ li:hover, li a:hover {
 	background-color: #FFFEF8;
 	cursor: pointer;
 }
-
-#btn_tous {
+.active_btn{
 	background-color: #1D6154;
 	color: #fff;
 }
+/* #btn_tous {
+	background-color: #1D6154;
+	color: #fff;
+} */
 
 .gallery {
 	width: 100%;

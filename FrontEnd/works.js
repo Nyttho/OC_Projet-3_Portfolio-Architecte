@@ -1,10 +1,10 @@
 fetch('http://localhost:5678/api/works')
             .then(response => response.json())
             .then(data => {
-             
+             //génère une première fois la gallerie au chargement de la page
                 generateItems(data);
 
-                //filtre objets
+                //filtre tous
                 const filterTousButton = document.querySelector("#btn_tous");
 
                 filterTousButton.addEventListener("click", function(){

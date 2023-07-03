@@ -18,38 +18,27 @@ async function callApi() {
     const objetButton = document.querySelector("#btn_objets");
     const appartementsButton = document.querySelector("#btn_appartements");
     const hotelsButton = document.querySelector("#btn_hotels_restaurants");
-    //filtre tous
+    //filtre tous renvoie la galerie complète
+
     tousButton.addEventListener("click", function() {
         document.querySelector(".gallery").innerHTML = "";
         generateGallery(data);
     });
-    //filtre objets
-    objetButton.addEventListener("click", function () {
-        const filtredItems = data.filter(item => {                
-            return item.category.name === "Objets";
-            
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        generateGallery(filtredItems);
-    });
-    //filtre appartements
-    appartementsButton.addEventListener("click", function () {
-        const filtredItems = data.filter(item => {                
-            return item.category.name === "Appartements";
-            
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        generateGallery(filtredItems);
-    });
-    //filtre hotels & restaurants
-    hotelsButton.addEventListener("click", function () {
-        const filtredItems = data.filter(item => {                
-            return item.category.name === "Hotels & restaurants";
-            
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        generateGallery(filtredItems);
-    });
+    filter(objetButton);
+    filter(appartementsButton);
+    filter(hotelsButton);
+   
+    //fonction pour gérer les filtres par catégories
+    function filter(button) {
+        button.addEventListener("click", function () {
+            const filtredItems = data.filter(item => {                
+                return item.category.name === button.innerText;
+                
+            });
+            document.querySelector(".gallery").innerHTML = "";
+            generateGallery(filtredItems);
+    }
+        )};
 
 };
 

@@ -17,14 +17,21 @@ async function login() {
                 },
                 body: JSON.stringify(userLogin)
             });
+            const data = await res.json();
             if (res.ok) {
-                const data = await res.json();
                 sessionStorage.setItem("token", data.token);
-                window.location.replace(
-                    "index.html"
-                  );
+                window.location.replace("./index.html");
             } else {
-                console.log('erreur connexion');
+                const password = document.getElementById("password");
+                const errorMessage = document.querySelector(".error_message_login");
+                password.classList.add("connection_error");
+                errorMessage.innerText = data.message;
+                setTimeout(function() {
+                    password.classList.remove("connection_error");
+                    errorMessage.innerText = "";
+                }, 1000);
+                               
+                
             }
         } catch (error) {
             console.log(res);

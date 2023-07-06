@@ -127,7 +127,8 @@ li:hover, li a:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-right: 2.5rem;
+	
 }
 .filtres {
 	display: flex;
@@ -224,7 +225,7 @@ footer nav ul {
 	padding: 1rem;
 	
 }
-
+/* style page login  */
 #login{
 	width: 30%;
 	margin: auto;
@@ -252,6 +253,8 @@ footer nav ul {
 	box-shadow: 0px 0px 10px 5px rgb(218, 16, 16);
 	animation: shake 0.8s 1;
 }
+
+/* animation mauvais mdp  */
 @keyframes shake {
 
 	from, to {
@@ -271,3 +274,55 @@ footer nav ul {
 		color: rgb(218, 16, 16)
 	}
 
+/* style page accueil mode édition   */
+
+.banner {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	color: white;
+	height: 3rem;
+}
+.banner > * {
+	margin-left: 1rem;
+}
+
+.banner button {
+	background-color: #fff;
+	border-radius: 15px;
+	padding: 0.5rem;
+	width: 200px;
+	border: none;
+	font-weight: bold;
+}
+
+.modify_avatar {
+	display: flex;
+	margin-left: 55px;
+	margin-top: 1rem;
+	cursor: pointer;
+
+}
+.modify_avatar p {
+	margin-left: 0.5rem;
+}
+
+.project {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modify_project {
+	display: flex;
+	cursor: pointer;
+}
+.modify_project p {
+	margin-left: 0.5rem;
+	
+}
+
+.login_logout {
+	cursor: pointer;
+}

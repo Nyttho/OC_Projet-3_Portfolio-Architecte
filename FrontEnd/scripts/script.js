@@ -1,7 +1,27 @@
+
+
 callApi();
 
 const filtersContainer = document.querySelector(".filtres");
+const token = sessionStorage.getItem("token");
+// vérifie si le token de connection est présent dans le sessionStorage
+if(token !== null){
+    const logoutBtn = document.querySelector(".login_logout");
+    logoutBtn.innerHTML = "<p>logout</p>";
+    //evenement pour se deconnecter
+    logoutBtn.addEventListener("click", function() {
+        sessionStorage.removeItem("token");
+        location.reload();
+    })
+//création des éléments spécifique à la page admin
+    const banner = document.querySelector(".banner");
+    banner.style.display = "flex";
+    const modifyAvatar = document.querySelector(".modify_avatar");
+    modifyAvatar.innerHTML = `<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>`;
+    const modifyProject = document.querySelector(".modify_project");
+    modifyProject.innerHTML = `<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>`;
 
+}
 
 //appel api éléments de galerie
 async function callApi() {

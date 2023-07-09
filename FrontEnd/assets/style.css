@@ -134,7 +134,7 @@ li:hover, li a:hover {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 2rem;
-	margin-top: 3rem;
+	
 }
 .btn {
 	padding: 0.5rem;
@@ -304,7 +304,10 @@ footer nav ul {
 	cursor: pointer;
 
 }
-.modify_avatar p {
+.modify_bio {
+	margin-bottom: 1rem;
+}
+.modify_avatar a, .modify_project a, .modify_bio a {
 	margin-left: 0.5rem;
 }
 
@@ -312,16 +315,14 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 3rem;
 }
 
-.modify_project {
+.modify_project, .modify_bio {
 	display: flex;
 	cursor: pointer;
 }
-.modify_project p {
-	margin-left: 0.5rem;
-	
-}
+
 
 .login_logout {
 	cursor: pointer;

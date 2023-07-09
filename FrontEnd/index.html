@@ -10,6 +10,7 @@
 	<script src="https://kit.fontawesome.com/d220321d0c.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
+		<link rel="stylesheet" href="modale_test_style.css">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -32,6 +33,7 @@
 		</nav>
 	</header>
 	<main>
+
 		<section id="introduction">
 			<figure id="avatar">
 				<img src="./assets/images/sophie-bluel.png" alt="">
@@ -39,6 +41,8 @@
 				</div>
 			</figure>
 			<article>
+				<div class="modify_bio">
+				</div>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
@@ -49,6 +53,81 @@
 					décorateur(trice)</p>
 			</article>
 		</section>
+
+		<aside id="modal1" class="modal" aria-hidden="true" role="modal" aria-labelledby="titlemodal" style="display:none">
+			<div class="modal-wrapper js-modal-stop">
+				<div class="x_mark">
+					<i class="fa-sharp fa-solid fa-xmark js-modal-close"></i>
+				</div>
+				<h3>Galerie photo</h3>
+				<div class="modal_gallery">
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					<figure class="modal_img_wrapper">
+						<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
+						<a href="#"><i class="fa-solid fa-trash-can"></i></a>
+						<p>éditer</p>
+					</figure>
+					
+				</div>
+				
+				<hr>
+	
+				<input type="submit" value="Ajouter une photo" class="add_work">
+				<p class="delete_gallery">supprimer la gallerie</p>
+			</div>
+	
+	
+			</div>
+		</aside>
 		<section id="portfolio">
 			<div class="project">
 				<h2>Mes Projets</h2>
@@ -57,55 +136,8 @@
 			</div>
 			<div class="filtres">
 				<button id="btn_tous" class="btn active_btn">Tous</button>
-				<!-- <button id="btn_objet" class="btn">Objets</button>
-			<button id="btn_apparements" class="btn">Appartements</button>
-			<button id="btn_hotels" class="btn">Hotêl & restaurants</button> -->
 			</div>
 			<div class="gallery">
-				<!-- <figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure> -->
 			</div>
 		</section>
 		<section id="contact">

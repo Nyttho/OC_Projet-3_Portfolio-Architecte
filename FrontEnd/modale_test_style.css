@@ -32,15 +32,16 @@
 
 .modal h3 {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 2rem;
 }
 
 .modal_gallery {
-    overflow: auto;
+    overflow: auto; /* permet de créer un scroll sur la gallerie de la modale si beaucoup de projets */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin: 10px 100px;
+    margin: 0 80px;
 
 }
 
@@ -73,14 +74,27 @@
     object-fit: cover;
 }
 
+.fa-arrows-up-down-left-right{
+    visibility: hidden;
+    right: 18px;
+    
+}
+
 .fa-trash-can {
+    right: 3px;
+}
+
+.fa-trash-can, .fa-arrows-up-down-left-right {
     font-size: 0.4rem;
     position: absolute;
     top: 3px;
-    right: 3px;
     background-color: black;
     color: white;
-    padding: 0.3rem;
+    padding: 0.2rem;
+}
+
+.modal_img_wrapper:hover .fa-arrows-up-down-left-right {
+    visibility: visible;
 }
 
 hr {

@@ -26,6 +26,18 @@ if (token) {
     // suppression des filtres
     filtersContainer.remove();
 
+    callApiGallery();
+
+    //génération des éléments de la gallerie modale
+
+    async function callApiGallery() {
+        const response = await fetch("http://localhost:5678/api/works");
+        const data = await response.json();
+
+        generateModalGallery(data);
+    }
+
+
     let modal = null;
     //fonction  ouverture de la modale
     const openModal = function (e) {
@@ -55,11 +67,13 @@ if (token) {
     //on stop la propagation aux enfants pour éviter la fermeture au clic à l'intérieur de la modale
     const stopPropagation = function (e) {
         e.stopPropagation()
-      }
-      //evenement pour ouvrir la modale
-      document.querySelectorAll(".js-modal").forEach(a => {
+    }
+    //evenement pour ouvrir la modale
+    document.querySelectorAll(".js-modal").forEach(a => {
         a.addEventListener('click', openModal);
     })
+
+
 }
 
 //appel api éléments de galerie
@@ -120,6 +134,41 @@ function generateGallery(work) {
 
     })
 };
+
+function generateModalGallery(work) {
+    work.forEach(item => {
+        
+        const gallery = document.querySelector(".modal_gallery");
+        const galleryElement = document.createElement("figure");
+        const elementIllustration = document.createElement("img");
+        const arrowsIcon = document.createElement("i");
+        const trashIconLink = document.createElement("a");
+        const trashIcon = document.createElement("i");
+        const edit = document.createElement("p");
+
+        elementIllustration.src = item.imageUrl;
+        elementIllustration.alt = item.title;
+
+        galleryElement.classList.add("modal_img_wrapper");
+        arrowsIcon.classList.add("fa-solid");
+        arrowsIcon.classList.add("fa-arrows-up-down-left-right")
+        trashIconLink.href = "#";
+        trashIcon.classList.add("fa-solid");
+        trashIcon.classList.add("fa-trash-can");
+        edit.innerText = "éditer";
+
+        gallery.appendChild(galleryElement);
+        galleryElement.appendChild(elementIllustration);
+        galleryElement.appendChild(arrowsIcon);
+        galleryElement.appendChild(trashIconLink);
+        galleryElement.appendChild(edit);
+        trashIconLink.appendChild(trashIcon);
+
+
+
+
+    })
+}
 
 // genère boutons filtres selon catégories
 function generateFilterButtons(category) {

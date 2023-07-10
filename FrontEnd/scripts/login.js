@@ -34,8 +34,7 @@ async function login() {
                 
             }
         } catch (error) {
-            console.log(res);
-            console.log(error);
+            alert("Une erreur est survenue");
         }
     })
 }

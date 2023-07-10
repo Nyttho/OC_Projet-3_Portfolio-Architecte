@@ -82,6 +82,7 @@
 
 .fa-trash-can {
     right: 3px;
+    cursor: pointer;
 }
 
 .fa-trash-can, .fa-arrows-up-down-left-right {
@@ -99,7 +100,7 @@
 
 hr {
     border: 0.5px solid #b3b3b3;
-    width: 60%;
+    width: 70%;
     height: 0.5px;
 
 

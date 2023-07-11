@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="modale_test_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/d220321d0c.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <aside id="modal1" class="modal" role="moal" aria-labelledby="titlemodal">
+    <aside id="modal1" class="modal" role="modal" aria-labelledby="titlemodal" style="display: none;">
         <div class="modal-wrapper js-modal-stop">
             <div class="x_mark">
                 <i class="fa-sharp fa-solid fa-xmark"></i>
@@ -74,11 +77,49 @@
                     <p>éditer</p>
                 </figure>
             </div>
-            
+
             <hr>
 
             <input type="submit" value="Ajouter une photo">
             <p class="delete_gallery">supprimer la gallerie</p>
+        </div>
+
+
+        </div>
+    </aside>
+
+    <aside id="modal2" class="modal" role="modal" aria-labelledby="titlemodal">
+        <div class="modal-wrapper js-modal-stop">
+            <div class="modal2_nav">
+                <i class="fa-solid fa-arrow-left"></i>
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </div>
+            <h3>Ajout photo</h3>
+            <form>
+                <div class="modal2_add_picture_box">
+                    <i class="fa-regular fa-image"></i>
+                    <label for="file" class="btn_add_file">+ Ajouter photo</label>
+                    <input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="add_file">
+                    <p>jpg. png : 4mo max</p>
+                </div>
+                <div class="modal_form_description">
+                    <label for="modal_form_title">Titre</label>
+                    <input type="text" name="modal_form_title" id="modal_form_title">
+                    <label for="modal_form_categories">Catégorie</label>
+                    <select name="modal_form_categories" id="modal_form_categories">
+                        <option value=""></option>
+                        <option value="Object">Object</option>
+                        <option value="Appart">Appart</option>
+                        <option value="autre truc">Autre truc</option>
+                    </select>
+                </div>
+
+            </form>
+
+            <hr>
+
+            <input type="submit" value="valider" id="modal2_submit">
+
         </div>
 
 

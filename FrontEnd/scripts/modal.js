@@ -24,7 +24,7 @@ if (token) {
             method: "DELETE",
             headers: {
               "Content-type": "application/json",
-              // "Authorization": "Bearer " + token
+              "Authorization": "Bearer " + token
             }
           }
           document.querySelector(".modal_gallery").innerHTML = "";
@@ -69,11 +69,6 @@ if (token) {
       galleryElement.appendChild(trashIcon);
       galleryElement.appendChild(edit);
     });
-
-    // Cibler toutes les icônes de corbeille générées
-   
-
-    // Ajouter un écouteur d'événements à chaque icône de corbeille
   
   }
 
@@ -90,6 +85,12 @@ if (token) {
     modal.addEventListener("click", closeModal);
     modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+
+    addWork.addEventListener("click", closeModal);
+    addWork.addEventListener("click", openModal2);
+    
+       
+
   };
 
   // Fonction pour fermer la modale
@@ -114,4 +115,26 @@ if (token) {
   document.querySelectorAll(".js-modal").forEach(a => {
     a.addEventListener("click", openModal);
   });
+//evenement pour ouvrir 2e modale
+  const addWork = document.querySelector(".add_work");
+
+  const openModal2 = function () {
+    const modal2 = document.querySelector("#modal2");
+    modal2.style.display = null;
+
+    
+  }
+
+  const closeModal2 = function () {
+    const modal2 = document.querySelector("#modal2");
+    modal2.style.display = "none";
+
+    
+  }
+
+ 
+  
+  
 }
+
+

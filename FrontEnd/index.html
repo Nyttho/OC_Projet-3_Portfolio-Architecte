@@ -53,7 +53,7 @@
 					décorateur(trice)</p>
 			</article>
 		</section>
-
+		<!-- 1ere modale  -->
 		<aside id="modal1" class="modal" aria-hidden="true" role="modal" aria-labelledby="titlemodal"
 			style="display:none">
 			<div class="modal-wrapper js-modal-stop">
@@ -68,6 +68,44 @@
 
 				<input type="submit" value="Ajouter une photo" class="add_work">
 				<p class="delete_gallery">supprimer la gallerie</p>
+			</div>
+
+
+			</div>
+		</aside>
+		<!-- 2e modale  -->
+		<aside id="modal2" class="modal" role="modal" aria-labelledby="titlemodal" style="display:none">
+			<div class="modal-wrapper js-modal-stop">
+				<div class="modal2_nav">
+					<i class="fa-solid fa-arrow-left"></i>
+					<i class="fa-sharp fa-solid fa-xmark"></i>
+				</div>
+				<h3>Ajout photo</h3>
+				<form>
+					<div class="modal2_add_picture_box">
+						<i class="fa-regular fa-image"></i>
+						<label for="file" class="btn_add_file">+ Ajouter photo</label>
+						<input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="add_file">
+						<p>jpg. png : 4mo max</p>
+					</div>
+					<div class="modal_form_description">
+						<label for="modal_form_title">Titre</label>
+						<input type="text" name="modal_form_title" id="modal_form_title">
+						<label for="modal_form_categories">Catégorie</label>
+						<select name="modal_form_categories" id="modal_form_categories">
+							<option value=""></option>
+							<option value="Object">Object</option>
+							<option value="Appart">Appart</option>
+							<option value="autre truc">Autre truc</option>
+						</select>
+					</div>
+
+				</form>
+
+				<hr>
+
+				<input type="submit" value="valider" id="modal2_submit">
+
 			</div>
 
 

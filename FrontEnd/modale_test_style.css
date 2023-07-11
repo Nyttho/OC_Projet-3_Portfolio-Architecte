@@ -24,6 +24,7 @@
     width: 60%;
     max-height: calc(100vh - 30px);
     max-width: calc(100vh - 20px);
+    
     border-radius: 10px;
     padding: 20px;
     background-color: #fff;
@@ -114,4 +115,87 @@ hr {
 .delete_gallery {
     color: red;
     cursor: pointer;
+}
+
+/* 2e modale  */
+
+
+
+.modal2_nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.fa-arrow-left {
+    cursor: pointer;
+}
+
+#modal2 h3 {
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.modal2_add_picture_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:  #E8F1F6;
+    padding: 20px;
+    width: 482px;
+    
+}
+
+.modal2_add_picture_box p {
+    color: gray;
+    margin-top: 0.5rem;
+}
+
+.fa-image {
+    color: gray;
+    font-size: 4.5rem;
+ 
+}
+
+.btn_add_file {
+    text-align: center;
+    min-width: 200px;
+    padding: 0.8rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #4e85a3;
+    background-color: rgba(174, 182, 200, 0.662);
+    cursor: pointer;
+}
+
+.modal_form_description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+#modal2 input, #modal2 select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	outline: none;
+}
+#modal2 label {
+	margin: 2em 0 1em 0;
+    font-family: 'Work Sans';
+}
+
+#modal2_submit {
+    min-width: 300px;
+    background-color: #b3b3b3;  
+    cursor: default;
+}
+
+
+#modal2 hr {
+    margin-top: 2rem;
 }

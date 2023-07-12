@@ -1,5 +1,6 @@
 if (token) {
   callApiGallery();
+  callApiCategories();
 
   // Génération des éléments de la galerie modale
 
@@ -31,17 +32,42 @@ if (token) {
           generateModalGallery(data)
         })
       }
-      
-      
-        
-      
-     
 
+ 
     } catch (error) {
       alert("Une erreur est survenue");
     }
   }
 
+  async function callApiCategories() {
+    try {
+      const response = await fetch('http://localhost:5678/api/categories');
+      const categories = await response.json();
+
+      generateCategoriesOption(categories);
+
+      
+    }catch (error) {
+
+    }
+  } 
+
+  function generateCategoriesOption(categories) {
+    const emptyCategoryOption = document.createElement("option");
+    const categorySelector = document.querySelector("#modal_form_categories");
+    categorySelector.appendChild(emptyCategoryOption);
+    categories.forEach(category => {
+
+        const categoryOption = document.createElement("option");
+
+        categoryOption.innerText = category.name;
+        categoryOption.setAttribute("value", category.name);
+        categoryOption.innerText = category.name;
+
+        categorySelector.appendChild(categoryOption);
+    })
+  }
+        
   // Fonction pour générer la galerie de la modale
   function generateModalGallery(work) {
     work.forEach(item => {
@@ -77,11 +103,10 @@ if (token) {
   // Fonction pour ouvrir la modale
   const openModal = function (e) {
     e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
-    target.style.display = null;
-    target.removeAttribute("aria-hidden");
-    target.setAttribute("aria-modal", "true");
-    modal = target;
+    modal = document.querySelector("#modal1");
+    modal.style.display = null;
+    modal.removeAttribute("aria-hidden");
+    modal.setAttribute("aria-modal", "true");
     modal.addEventListener("click", closeModal);
     modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
@@ -117,17 +142,32 @@ if (token) {
   });
 //evenement pour ouvrir 2e modale
   const addWork = document.querySelector(".add_work");
+  let modal2 = null;
 
   const openModal2 = function () {
-    const modal2 = document.querySelector("#modal2");
+    modal2 = document.querySelector("#modal2");
     modal2.style.display = null;
+    modal2.removeAttribute("aria-hidden");
+    modal2.setAttribute("aria-modal", "true");
+    modal2.addEventListener("click", closeModal2);
+    const returnBack = modal2.querySelector(".return_back"); 
+    returnBack.addEventListener("click", closeModal2);
+    modal2.querySelector(".js-modal-close").addEventListener("click", closeModal2);
+    modal2.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
 
     
   }
 
   const closeModal2 = function () {
-    const modal2 = document.querySelector("#modal2");
+    if (modal2 === null) return;
+    
     modal2.style.display = "none";
+    modal2.setAttribute("aria-hidden", "true");
+    modal2.removeAttribute("aria-modal");
+    modal2.removeEventListener("click", closeModal);
+    modal2.querySelector(".js-modal-close").removeEventListener("click", closeModal);
+    modal2.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
+    modal2 = null;
 
     
   }

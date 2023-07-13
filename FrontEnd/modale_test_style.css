@@ -17,14 +17,12 @@
 }
 
 .modal-wrapper {
-    
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
     max-height: calc(100vh - 30px);
-    max-width: calc(100vh - 20px);
-    
+    max-width: calc(60vw - 20px);
     border-radius: 10px;
     padding: 20px;
     background-color: #fff;
@@ -42,7 +40,7 @@
     overflow: auto; /* permet de créer un scroll sur la gallerie de la modale si beaucoup de projets */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin: 0 100px;
+    margin: 0 25%;
 
 }
 
@@ -101,7 +99,7 @@
 
 hr {
     border: 0.5px solid #b3b3b3;
-    width: 70%;
+    width: 60%;
     height: 0.5px;
 
 
@@ -118,7 +116,9 @@ hr {
 }
 
 /* 2e modale  */
-
+.modal-wrapper2 {
+    overflow: auto;
+}
 #modal2 form {
     display: flex;
     justify-content: center;
@@ -148,7 +148,7 @@ hr {
     align-items: center;
     background-color:  #E8F1F6;
     padding: 20px;
-    width: 482px;
+    width: 45vw;
     
 }
 
@@ -197,6 +197,8 @@ hr {
     min-width: 300px;
     background-color: #b3b3b3;  
     cursor: default;
+    margin-bottom: 1rem;
+   
 }
 
 
@@ -204,3 +206,4 @@ hr {
     margin-top: 2rem;
     width: 100%;
 }
+

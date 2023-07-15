@@ -99,7 +99,7 @@
 
 hr {
     border: 0.5px solid #b3b3b3;
-    width: 60%;
+    width: 50%;
     height: 0.5px;
 
 
@@ -148,7 +148,7 @@ hr {
     align-items: center;
     background-color:  #E8F1F6;
     padding: 20px;
-    width: 45vw;
+    width: 40vw;
     
 }
 
@@ -206,4 +206,12 @@ hr {
     margin-top: 2rem;
     width: 100%;
 }
+
+
+.preview img {
+    width: 200px;
+    object-fit: cover;
+    
+}
+
 

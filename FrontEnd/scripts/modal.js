@@ -22,15 +22,14 @@ if (token) {
           for (let i = 0; i < data.length; i++) {
             id = data[i].id;
             fetch(`http://localhost:5678/api/works/${id}`, {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-              "Authorization": "Bearer " + token
-            }
-          })
-          document.querySelector(".modal_gallery").innerHTML = "";
-          generateModalGallery(data);}
-          
+              method: "DELETE",
+              headers: {
+                "Content-type": "application/json",
+                "Authorization": "Bearer " + token
+              }
+            })
+            document.querySelector(".modal_gallery").innerHTML = "";
+          }
         }
       })
       //suppression des travaux
@@ -46,7 +45,7 @@ if (token) {
           id = itemId[i];
           let confirm = window.confirm("Etes vous sûr de vouloir supprimer le projet ?");
           if (confirm) {
-           
+
             fetch(`http://localhost:5678/api/works/${id}`, {
               method: "DELETE",
               headers: {
@@ -54,56 +53,79 @@ if (token) {
                 "Authorization": "Bearer " + token
               }
             })
-            
+
             document.querySelector(".modal_gallery").innerHTML = "";
             generateModalGallery(data)
-          }})
-        }
-      
+          }
+        })
+      }
+
 
     } catch (error) {
-      // alert("Une erreur est survenue");
+      alert("Une erreur est survenue");
     }
   }
-const fileInput = document.getElementById("file");
-fileInput.addEventListener("change", () => previewImg());
-const addFileContainer = document.querySelector(".modal2_add_picture_box");
+  const fileInput = document.getElementById("file");   
+  const title = document.getElementById("modal_form_title"); 
+  const category = document.getElementById("modal_form_categories");
+  const submitNewFile = document.getElementById("modal2_submit"); 
 
-//fonction pour afficher une preview de l'image à ajouter
-function previewImg() {
-  let imageType = /^image\//;
-  let files = fileInput.files;
-  const preview = document.querySelector(".preview");
-  for (let i = 0; i < files.length; i++) {
-   
-    const span = document.createElement("span");
+  fileInput.addEventListener("change", () => previewImg());
+  const addFileContainer = document.querySelector(".modal2_add_picture_box");
+
+  fileInput.addEventListener("input", activeSubmitBtn());
+  title.addEventListener("input", activeSubmitBtn());
+  category.addEventListener("input", activeSubmitBtn());
+ //fonction pour activer ou désactiver le bouton valider de la modale 2
+  function activeSubmitBtn(){
+  if(fileInput.value && title.value && category.value){
+    submitNewFile.disabled = false;
+    submitNewFile.style.cursor = "pointer";
+    submitNewFile.style.backgroundColor = "#1D6154"
+    
+    }else {
+      submitNewFile.disabled = true;
+    }
+  }
+  
+
+  //fonction pour afficher une preview de l'image à ajouter
+  function previewImg() {
+    let imageType = /(.jpg|.png|.jpeg)/;
+    let files = fileInput.files;
+    const preview = document.querySelector(".preview");
+    for (let i = 0; i < files.length; i++) {
+
+      const span = document.createElement("span");
 
       let file = files[i];
       if (!imageType.test(file.type)) {
-          alert("veuillez sélectionner une image");
+        alert("veuillez sélectionner une image au format .jpg ou .png");
       } else {
-          if (i == 0) {
-              preview.innerHTML = '';
-          }
-          addFileContainer.innerHTML = "";
-          let img = document.createElement("img");
-          img.classList.add("obj");
-          img.file = file;
-          addFileContainer.appendChild(span);
-          span.appendChild(preview);
-          preview.appendChild(img);
-          let reader = new FileReader();
-          reader.onload = (function(aImg) {
-              return function(e) {
-                  aImg.src = e.target.result;
-              };
-          })(img);
+        if (i == 0) {
+          preview.innerHTML = '';
+        }
+        addFileContainer.innerHTML = "";
+        let img = document.createElement("img");
+        img.classList.add("obj");
+        img.file = file;
+        addFileContainer.appendChild(span);
+        span.appendChild(preview);
+        preview.appendChild(img);
+        let reader = new FileReader();
+        reader.onload = (function (aImg) {
+          return function (e) {
+            aImg.src = e.target.result;
+          };
+        })(img);
 
-          reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
       }
 
+    }
   }
-}
+
+
 
   async function callApiCategories() {
     try {
@@ -209,9 +231,9 @@ function previewImg() {
   //evenement pour ouvrir 2e modale
   const addWork = document.querySelector(".add_work");
   let modal2 = null;
-//fonction pour reset l'uplaod d'image
-  function uploadImgCancel () {
-  {
+  //fonction pour reset l'uplaod d'image
+  function uploadImgCancel() {
+    {
       addFileContainer.innerHTML = "";
       addFileContainer.innerHTML = `<span class="preview"></span>
       <i class="fa-regular fa-image"></i>
@@ -219,7 +241,7 @@ function previewImg() {
       <input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="add_file"
         required>
       <p>jpg. png : 4mo max</p>`;
-  }
+    }
   }
 
   const openModal2 = function () {
@@ -235,7 +257,7 @@ function previewImg() {
 
 
   }
-// fonction pour fermer 2e modale
+  // fonction pour fermer 2e modale
   const closeModal2 = function () {
     if (modal2 === null) return;
 

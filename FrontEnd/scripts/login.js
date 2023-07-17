@@ -2,7 +2,7 @@ async function login() {
     const formLogin = document.querySelector(".authentification");
     formLogin.addEventListener("submit", async function (event) {
         event.preventDefault();
-
+        //on crée une variable qui contien en objet la valeur de l'input mail et password
         let userLogin = {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value

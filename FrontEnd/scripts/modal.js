@@ -65,29 +65,65 @@ if (token) {
       alert("Une erreur est survenue");
     }
   }
-  const fileInput = document.getElementById("file");   
-  const title = document.getElementById("modal_form_title"); 
+  const fileInput = document.getElementById("file");
+  const title = document.getElementById("modal_form_title");
   const category = document.getElementById("modal_form_categories");
-  const submitNewFile = document.getElementById("modal2_submit"); 
+  const submitNewFile = document.getElementById("modal2_submit");
 
-  fileInput.addEventListener("change", () => previewImg());
-  const addFileContainer = document.querySelector(".modal2_add_picture_box");
-
-  fileInput.addEventListener("input", activeSubmitBtn());
-  title.addEventListener("input", activeSubmitBtn());
-  category.addEventListener("input", activeSubmitBtn());
- //fonction pour activer ou désactiver le bouton valider de la modale 2
-  function activeSubmitBtn(){
-  if(fileInput.value && title.value && category.value){
-    submitNewFile.disabled = false;
-    submitNewFile.style.cursor = "pointer";
-    submitNewFile.style.backgroundColor = "#1D6154"
-    
-    }else {
-      submitNewFile.disabled = true;
-    }
-  }
   
+  const addFileForm = document.querySelector(".js-add-file");
+  
+  addFileForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    //création d'un formData du formulaire modale 2
+    const formData = new FormData(addFileForm);
+    
+    formData.append('image' ,fileInput.files[0]);
+    
+    addFile(formData);
+    for(items of formData) {
+      console.log(items[0], items[1]);
+    }
+    
+    
+  })
+
+  //Envoi des nouveaux fichiers à l'api
+  async function addFile (formData){
+    const res = await fetch("http://localhost:5678/api/works", {
+              method: 'POST',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+              body: formData
+          });
+          const data = await res.json();
+          console.log(data);
+  }
+
+
+    fileInput.addEventListener("change", () => previewImg());
+    const addFileContainer = document.querySelector(".modal2_add_picture_box");
+
+  //   fileInput.addEventListener("input", activeSubmitBtn());
+  //   title.addEventListener("input", activeSubmitBtn());
+  //   category.addEventListener("input", activeSubmitBtn());
+  //   console.log(title);
+  //  //fonction pour activer ou désactiver le bouton valider de la modale 2
+  //   function activeSubmitBtn(){
+  //   if(title.value !==""){
+  //     console.log("coucou");
+  //     // submitNewFile.disabled = false;
+  //     // submitNewFile.style.cursor = "pointer";
+  //     // submitNewFile.style.backgroundColor = "#1D6154"
+
+  //     }else {
+  //       submitNewFile.disabled = true;
+  //     }
+  //   }
+
 
   //fonction pour afficher une preview de l'image à ajouter
   function previewImg() {

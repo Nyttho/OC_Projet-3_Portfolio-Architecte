@@ -66,9 +66,28 @@ if (token) {
     }
   }
   const fileInput = document.getElementById("file");
-  const title = document.getElementById("modal_form_title");
-  const category = document.getElementById("modal_form_categories");
-  const submitNewFile = document.getElementById("modal2_submit");
+  const textInput = document.getElementById("modal_form_title");
+  const selectInput = document.getElementById("modal_form_categories");
+  const submitButton = document.getElementById("modal2_submit");
+
+  // Fonction pour vérifier si tous les champs sont remplis
+function checkFormValidity() {
+  if (fileInput.value && textInput.value && selectInput.value) {
+    submitButton.disabled = false;
+    submitButton.style.backgroundColor = "#1D6154";
+    submitButton.style.cursor = "pointer";
+  } else {
+    submitButton.disabled = true;
+    submitButton.style.backgroundColor = "#B3B3B3";
+    submitButton.style.cursor = "default";
+
+  }
+}
+
+// Ajouter des écouteurs d'événements pour les champs du formulaire
+fileInput.addEventListener('input', checkFormValidity);
+textInput.addEventListener('input', checkFormValidity);
+selectInput.addEventListener('input', checkFormValidity);
 
   
   const addFileForm = document.querySelector(".js-add-file");
@@ -107,22 +126,12 @@ if (token) {
     fileInput.addEventListener("change", () => previewImg());
     const addFileContainer = document.querySelector(".modal2_add_picture_box");
 
-  //   fileInput.addEventListener("input", activeSubmitBtn());
-  //   title.addEventListener("input", activeSubmitBtn());
-  //   category.addEventListener("input", activeSubmitBtn());
-  //   console.log(title);
-  //  //fonction pour activer ou désactiver le bouton valider de la modale 2
-  //   function activeSubmitBtn(){
-  //   if(title.value !==""){
-  //     console.log("coucou");
-  //     // submitNewFile.disabled = false;
-  //     // submitNewFile.style.cursor = "pointer";
-  //     // submitNewFile.style.backgroundColor = "#1D6154"
 
-  //     }else {
-  //       submitNewFile.disabled = true;
-  //     }
-  //   }
+
+
+
+
+
 
 
   //fonction pour afficher une preview de l'image à ajouter

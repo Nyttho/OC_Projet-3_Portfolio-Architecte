@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     max-height: calc(100vh - 30px);
-    max-width: calc(60vw - 20px);
+    width: calc(50vw - 20px);
     border-radius: 10px;
     padding: 20px;
     background-color: #fff;
@@ -118,6 +118,8 @@ hr {
 /* 2e modale  */
 .modal-wrapper2 {
     overflow: auto;
+    
+    
 }
 #modal2 form {
     display: flex;
@@ -147,8 +149,18 @@ hr {
     justify-content: center;
     align-items: center;
     background-color:  #E8F1F6;
+    width: 30vw;
+    
+    
+    
+}
+.add_file_design {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    width: 40vw;
+    width: 30vw;
     
 }
 

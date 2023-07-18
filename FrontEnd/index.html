@@ -10,9 +10,9 @@
 	<script src="https://kit.fontawesome.com/d220321d0c.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="modale_test_style.css">
+	<link rel="stylesheet" href="./assets/styles/modale.css">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="./assets/styles/style.css">
 </head>
 
 <body>
@@ -84,12 +84,14 @@
 				<h3>Ajout photo</h3>
 				<form class="js-add-file" action="#" method="post">
 					<div class="modal2_add_picture_box">
-						<span class="preview"></span>
-						<i class="fa-regular fa-image"></i>
-						<label for="file" class="btn_add_file">+ Ajouter photo</label>
-						<input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="file"
-							required>
-						<p>jpg. png : 4mo max</p>
+						<div class="preview"></div>
+						<div class="js_add_file_container add_file_design">
+							<i class="fa-regular fa-image"></i>
+							<label for="file" class="btn_add_file">+ Ajouter photo</label>
+							<input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="file"
+								required>
+							<p>jpg. png : 4mo max</p>
+						</div>
 					</div>
 					<div class="modal_form_description">
 						<label for="modal_form_title">Titre</label>
@@ -102,7 +104,7 @@
 
 					<hr>
 
-					<input type="submit" value="valider" id="modal2_submit" >
+					<input type="submit" value="valider" id="modal2_submit">
 
 				</form>
 			</div>

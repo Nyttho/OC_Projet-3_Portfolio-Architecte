@@ -104,7 +104,6 @@ selectInput.addEventListener('input', checkFormValidity);
       console.log(items[0], items[1]);
     }
     
-    
   })
 
   //Envoi des nouveaux fichiers à l'api
@@ -124,15 +123,8 @@ selectInput.addEventListener('input', checkFormValidity);
 
 
     fileInput.addEventListener("change", () => previewImg());
-    const addFileContainer = document.querySelector(".modal2_add_picture_box");
-
-
-
-
-
-
-
-
+    const addFileContainer = document.querySelector(".js_add_file_container");
+    
 
   //fonction pour afficher une preview de l'image à ajouter
   function previewImg() {
@@ -147,15 +139,14 @@ selectInput.addEventListener('input', checkFormValidity);
       if (!imageType.test(file.type)) {
         alert("veuillez sélectionner une image au format .jpg ou .png");
       } else {
-        if (i == 0) {
+        if (i === 0) {
           preview.innerHTML = '';
         }
-        addFileContainer.innerHTML = "";
+        addFileContainer.style.display = "none";
         let img = document.createElement("img");
         img.classList.add("obj");
         img.file = file;
-        addFileContainer.appendChild(span);
-        span.appendChild(preview);
+        
         preview.appendChild(img);
         let reader = new FileReader();
         reader.onload = (function (aImg) {
@@ -163,11 +154,26 @@ selectInput.addEventListener('input', checkFormValidity);
             aImg.src = e.target.result;
           };
         })(img);
-
+        
         reader.readAsDataURL(file);
+        
+        
       }
 
     }
+  }
+//fonction pour remettre à zéro la modale 2 si on la ferme
+  function resetModal2() {
+    const imgPreview = document.querySelector(".preview img");
+    imgPreview.src = "";
+    addFileContainer.style.display = "flex";
+    fileInput.value = "";
+    textInput.value = "";
+    selectInput.value = "";
+    submitButton.disabled = true;
+    submitButton.style.backgroundColor = "#B3B3B3";
+    submitButton.style.cursor = "default";
+
   }
 
 
@@ -187,6 +193,7 @@ selectInput.addEventListener('input', checkFormValidity);
 
   function generateCategoriesOption(categories) {
     const emptyCategoryOption = document.createElement("option");
+    emptyCategoryOption.setAttribute("value", "")
     const categorySelector = document.querySelector("#modal_form_categories");
     categorySelector.appendChild(emptyCategoryOption);
     categories.forEach(category => {
@@ -243,7 +250,7 @@ selectInput.addEventListener('input', checkFormValidity);
     modal.addEventListener("click", closeModal);
     modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
-
+    
     addWork.addEventListener("click", closeModal);
     addWork.addEventListener("click", openModal2);
 
@@ -277,17 +284,7 @@ selectInput.addEventListener('input', checkFormValidity);
   const addWork = document.querySelector(".add_work");
   let modal2 = null;
   //fonction pour reset l'uplaod d'image
-  function uploadImgCancel() {
-    {
-      addFileContainer.innerHTML = "";
-      addFileContainer.innerHTML = `<span class="preview"></span>
-      <i class="fa-regular fa-image"></i>
-      <label for="file" class="btn_add_file">+ Ajouter photo</label>
-      <input id="file" type="file" style="display: none;" accept=".png, .jpg, .jpeg" name="add_file"
-        required>
-      <p>jpg. png : 4mo max</p>`;
-    }
-  }
+  
 
   const openModal2 = function () {
     modal2 = document.querySelector("#modal2");
@@ -299,6 +296,7 @@ selectInput.addEventListener('input', checkFormValidity);
     returnBack.addEventListener("click", closeModal2);
     modal2.querySelector(".js-modal-close").addEventListener("click", closeModal2);
     modal2.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+    fileInput.addEventListener("change", () => previewImg());
 
 
   }
@@ -311,8 +309,11 @@ selectInput.addEventListener('input', checkFormValidity);
     modal2.removeAttribute("aria-modal");
     modal2.removeEventListener("click", closeModal);
     modal2.querySelector(".js-modal-close").removeEventListener("click", closeModal);
+    modal2.querySelector(".js-modal-close").removeEventListener("click", resetModal2());
     modal2.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
+    fileInput.removeEventListener("change", () => previewImg());
     modal2 = null;
+
 
 
   }

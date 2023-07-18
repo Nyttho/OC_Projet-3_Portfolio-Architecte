@@ -54,8 +54,9 @@ if (token) {
               }
             })
 
-            document.querySelector(".modal_gallery").innerHTML = "";
-            generateModalGallery(data)
+            const element = allTrashIcons[i].parentNode;
+            element.remove();
+            // generateModalGallery(data);
           }
         })
       }
@@ -97,11 +98,11 @@ selectInput.addEventListener('input', checkFormValidity);
     //création d'un formData du formulaire modale 2
     const formData = new FormData(addFileForm);
     
-    formData.append('image' ,fileInput.files[0]);
+    // formData.append('image' ,fileInput.files[0]);
     
     addFile(formData);
     for(items of formData) {
-      console.log(items[0], items[1]);
+      console.log(items[0], items[1]);  //le file ne serais pas au bon format ?
     }
     
   })
@@ -112,13 +113,13 @@ selectInput.addEventListener('input', checkFormValidity);
               method: 'POST',
               headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json',
+                  'Content-Type': 'multipart/form-data',
                   'Authorization': `Bearer ${token}`
               },
               body: formData
           });
           const data = await res.json();
-          console.log(data);
+          
   }
 
 
@@ -201,7 +202,7 @@ selectInput.addEventListener('input', checkFormValidity);
       const categoryOption = document.createElement("option");
 
       categoryOption.innerText = category.name;
-      categoryOption.setAttribute("value", category.name);
+      categoryOption.setAttribute("value", category.id);
       categoryOption.innerText = category.name;
 
       categorySelector.appendChild(categoryOption);
@@ -269,6 +270,7 @@ selectInput.addEventListener('input', checkFormValidity);
     modal.querySelector(".js-modal-close").removeEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
     modal = null;
+    
   };
 
   // Empêcher la propagation d'événements aux enfants de la modale
@@ -322,5 +324,3 @@ selectInput.addEventListener('input', checkFormValidity);
 
 
 }
-
-

@@ -114,5 +114,3 @@ function generateFilterButtons(category) {
         });
     });
 };
-
-

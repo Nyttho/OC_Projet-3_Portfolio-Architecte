@@ -1,7 +1,7 @@
 
 
 callApi();
-
+const gallery = document.querySelector(".gallery");
 const filtersContainer = document.querySelector(".filtres");
 const token = sessionStorage.getItem("token");
 // vérifie si le token de connection est présent dans le sessionStorage
@@ -24,7 +24,7 @@ if (token) {
     modifyProject.innerHTML = `<i class="fa-regular fa-pen-to-square"></i><a href="#modal1" class="js-modal">modifier</a>`;
 
     // suppression des filtres
-    filtersContainer.remove();
+    filtersContainer.style.display = "none";
 
 }
 
@@ -72,7 +72,7 @@ async function callApi() {
 function generateGallery(work) {
     work.forEach(item => {
 
-        const gallery = document.querySelector(".gallery");
+        
         const galleryElement = document.createElement("figure");
         const elementIllustration = document.createElement("img");
         const elementTitle = document.createElement("figcaption");

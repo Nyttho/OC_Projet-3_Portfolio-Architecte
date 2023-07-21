@@ -7,7 +7,7 @@ async function login() {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
         };
-
+        //envoi de la demande de connexion à l'api
         try {
             const res = await fetch("http://localhost:5678/api/users/login", {
                 method: 'POST',
@@ -26,6 +26,7 @@ async function login() {
                 const errorMessage = document.querySelector(".error_message_login");
                 password.classList.add("connection_error");
                 errorMessage.innerText = data.message;
+                //arrête l'animation après 1s
                 setTimeout(function() {
                     password.classList.remove("connection_error");
                     errorMessage.innerText = "";

@@ -1,6 +1,7 @@
 if (token) {
   callApiGallery();
   callApiCategories();
+  const modalGallery = document.querySelector(".modal_gallery");
 
   // Génération des éléments de la galerie modale
 
@@ -28,13 +29,19 @@ if (token) {
                 "Authorization": "Bearer " + token
               }
             })
-            document.querySelector(".modal_gallery").innerHTML = "";
+            
           }
+          gallery.innerHTML="";
+          modalGallery.innerHTML = "";
+
         }
       })
+
+     
       //suppression des travaux
 
       const allTrashIcons = document.querySelectorAll(".fa-trash-can");
+      const allImgGallery = document.querySelectorAll("figure img");
 
       let id = 0;
       for (let i = 0; i < allTrashIcons.length; i++) {
@@ -55,16 +62,26 @@ if (token) {
             })
 
             const element = allTrashIcons[i].parentNode;
+            
             element.remove();
-            // generateModalGallery(data);
+            updatedWork();
+
           }
         })
       }
-
-
     } catch (error) {
       alert("Une erreur est survenue");
     }
+  }
+// fonction pour régénérer les galleries après modification
+  async function updatedWork(){
+    const response = await fetch("http://localhost:5678/api/works");
+    const data = await response.json();
+    gallery.innerHTML = "";
+    generateGallery(data);
+    modalGallery.innerHTML = "";
+    generateModalGallery(data);
+    
   }
   const fileInput = document.getElementById("file");
   const textInput = document.getElementById("modal_form_title");
@@ -72,60 +89,69 @@ if (token) {
   const submitButton = document.getElementById("modal2_submit");
 
   // Fonction pour vérifier si tous les champs sont remplis
-function checkFormValidity() {
-  if (fileInput.value && textInput.value && selectInput.value) {
-    submitButton.disabled = false;
-    submitButton.style.backgroundColor = "#1D6154";
-    submitButton.style.cursor = "pointer";
-  } else {
-    submitButton.disabled = true;
-    submitButton.style.backgroundColor = "#B3B3B3";
-    submitButton.style.cursor = "default";
+  function checkFormValidity() {
+    if (fileInput.value && textInput.value && selectInput.value) {
+      submitButton.disabled = false;
+      submitButton.style.backgroundColor = "#1D6154";
+      submitButton.style.cursor = "pointer";
+    } else {
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#B3B3B3";
+      submitButton.style.cursor = "default";
 
+    }
   }
-}
 
-// Ajouter des écouteurs d'événements pour les champs du formulaire
-fileInput.addEventListener('input', checkFormValidity);
-textInput.addEventListener('input', checkFormValidity);
-selectInput.addEventListener('input', checkFormValidity);
+  // Ajouter des écouteurs d'événements pour les champs du formulaire
+  fileInput.addEventListener('input', checkFormValidity);
+  textInput.addEventListener('input', checkFormValidity);
+  selectInput.addEventListener('input', checkFormValidity);
 
-  
+
   const addFileForm = document.querySelector(".js-add-file");
-  
+
   addFileForm.addEventListener("submit", (e) => {
     e.preventDefault();
     //création d'un formData du formulaire modale 2
-    const formData = new FormData(addFileForm);
-    
-    // formData.append('image' ,fileInput.files[0]);
-    
+    const formData = new FormData();
+
+    const title = document.getElementById('modal_form_title').value;
+    const imageFile = document.getElementById('file').files[0];
+    const category = document.getElementById('modal_form_categories').value;
+
+    formData.append('image', imageFile);
+    formData.append('title', title);
+    formData.append('category', category);
+
     addFile(formData);
-    for(items of formData) {
-      console.log(items[0], items[1]);  //le file ne serais pas au bon format ?
-    }
     
+    
+
+
   })
 
-  //Envoi des nouveaux fichiers à l'api
-  async function addFile (formData){
+  //fonction pour envoi des nouveaux fichiers à l'api
+  async function addFile(formData) {
     const res = await fetch("http://localhost:5678/api/works", {
-              method: 'POST',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'multipart/form-data',
-                  'Authorization': `Bearer ${token}`
-              },
-              body: formData
-          });
-          const data = await res.json();
-          
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    });
+    const data = await res.json();
+    updatedWork();
+
+    closeModal2();
+
+   
+
   }
 
 
-    fileInput.addEventListener("change", () => previewImg());
-    const addFileContainer = document.querySelector(".js_add_file_container");
-    
+  fileInput.addEventListener("change", () => previewImg());
+  const addFileContainer = document.querySelector(".js_add_file_container");
+
 
   //fonction pour afficher une preview de l'image à ajouter
   function previewImg() {
@@ -133,8 +159,6 @@ selectInput.addEventListener('input', checkFormValidity);
     let files = fileInput.files;
     const preview = document.querySelector(".preview");
     for (let i = 0; i < files.length; i++) {
-
-      const span = document.createElement("span");
 
       let file = files[i];
       if (!imageType.test(file.type)) {
@@ -147,7 +171,7 @@ selectInput.addEventListener('input', checkFormValidity);
         let img = document.createElement("img");
         img.classList.add("obj");
         img.file = file;
-        
+
         preview.appendChild(img);
         let reader = new FileReader();
         reader.onload = (function (aImg) {
@@ -155,15 +179,15 @@ selectInput.addEventListener('input', checkFormValidity);
             aImg.src = e.target.result;
           };
         })(img);
-        
+
         reader.readAsDataURL(file);
-        
-        
+
+
       }
 
     }
   }
-//fonction pour remettre à zéro la modale 2 si on la ferme
+  //fonction pour remettre à zéro la modale 2 si on la ferme
   function resetModal2() {
     const imgPreview = document.querySelector(".preview img");
     imgPreview.src = "";
@@ -212,7 +236,7 @@ selectInput.addEventListener('input', checkFormValidity);
   // Fonction pour générer la galerie de la modale
   function generateModalGallery(work) {
     work.forEach(item => {
-      const gallery = document.querySelector(".modal_gallery");
+      
       const galleryElement = document.createElement("figure");
       const elementIllustration = document.createElement("img");
       const arrowsIcon = document.createElement("i");
@@ -230,7 +254,7 @@ selectInput.addEventListener('input', checkFormValidity);
       trashIcon.classList.add("fa-trash-can");
       edit.innerText = "éditer";
 
-      gallery.appendChild(galleryElement);
+      modalGallery.appendChild(galleryElement);
       galleryElement.appendChild(elementIllustration);
       galleryElement.appendChild(arrowsIcon);
       galleryElement.appendChild(trashIcon);
@@ -251,7 +275,7 @@ selectInput.addEventListener('input', checkFormValidity);
     modal.addEventListener("click", closeModal);
     modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
-    
+
     addWork.addEventListener("click", closeModal);
     addWork.addEventListener("click", openModal2);
 
@@ -270,7 +294,7 @@ selectInput.addEventListener('input', checkFormValidity);
     modal.querySelector(".js-modal-close").removeEventListener("click", closeModal);
     modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
     modal = null;
-    
+
   };
 
   // Empêcher la propagation d'événements aux enfants de la modale
@@ -286,7 +310,7 @@ selectInput.addEventListener('input', checkFormValidity);
   const addWork = document.querySelector(".add_work");
   let modal2 = null;
   //fonction pour reset l'uplaod d'image
-  
+
 
   const openModal2 = function () {
     modal2 = document.querySelector("#modal2");

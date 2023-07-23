@@ -41,7 +41,7 @@ if (token) {
       //suppression des travaux
 
       const allTrashIcons = document.querySelectorAll(".fa-trash-can");
-      const allImgGallery = document.querySelectorAll("figure img");
+      
 
       let id = 0;
       for (let i = 0; i < allTrashIcons.length; i++) {
@@ -79,8 +79,7 @@ if (token) {
     const data = await response.json();
     gallery.innerHTML = "";
     generateGallery(data);
-    modalGallery.innerHTML = "";
-    generateModalGallery(data);
+    
     
   }
   const fileInput = document.getElementById("file");
@@ -132,6 +131,7 @@ if (token) {
 
   //fonction pour envoi des nouveaux fichiers à l'api
   async function addFile(formData) {
+    try{
     const res = await fetch("http://localhost:5678/api/works", {
       method: 'POST',
       headers: {
@@ -140,9 +140,10 @@ if (token) {
       body: formData
     });
     const data = await res.json();
-    updatedWork();
-
-    closeModal2();
+    location.reload();
+  }catch(error){
+    alert("une erreur s'est produite")
+  }
 
    
 

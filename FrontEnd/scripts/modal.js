@@ -42,7 +42,7 @@ if (token) {
       alert("Une erreur est survenue");
     }
   }
-// mise à jour de la gallerie
+  // mise à jour de la gallerie
   async function updatedWork() {
     data = await fetchDataFromApi("http://localhost:5678/api/works");
     gallery.innerHTML = "";
@@ -53,7 +53,7 @@ if (token) {
     const response = await fetch(url);
     return await response.json();
   }
-//envoi de requete delete à l'api en fonction de l'id
+  //envoi de requete delete à l'api en fonction de l'id
   async function deleteWork(id) {
     await fetch(`http://localhost:5678/api/works/${id}`, {
       method: "DELETE",
@@ -64,11 +64,12 @@ if (token) {
     });
   }
 
+  const fileLabel = document.querySelector(".btn_add_file");
   const fileInput = document.getElementById("file");
   const textInput = document.getElementById("modal_form_title");
   const selectInput = document.getElementById("modal_form_categories");
   const submitButton = document.getElementById("modal2_submit");
-//vérifie si le formulaire est rempli
+  //vérifie si le formulaire est rempli
   function checkFormValidity() {
     if (fileInput.value && textInput.value && selectInput.value) {
       // submitButton.disabled = false;
@@ -84,11 +85,31 @@ if (token) {
   fileInput.addEventListener('input', checkFormValidity);
   textInput.addEventListener('input', checkFormValidity);
   selectInput.addEventListener('input', checkFormValidity);
-//envoi de nouveaux travaux à l'api
-  submitButton.addEventListener("click", async (fe) => {
-    fe.preventDefault();
+  //envoi de nouveaux travaux à l'api
+  submitButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+  
     if (fileInput.value === "" || textInput.value === "" || selectInput.value === "") {
-      alert("veuillez renseigner tous les champs");
+      if (fileInput.value === "") {
+        fileLabel.classList.add("form_error");
+        setTimeout(function () {
+          fileLabel.classList.remove("form_error");
+        }, 1000);
+      }
+  
+      if (textInput.value === "") {
+        textInput.classList.add("form_error");
+        setTimeout(function () {
+          textInput.classList.remove("form_error");
+        }, 1000);
+      }
+  
+      if (selectInput.value === "") {
+        selectInput.classList.add("form_error");
+        setTimeout(function () {
+          selectInput.classList.remove("form_error");
+        }, 1000);
+      }
     } else {
       const title = document.getElementById('modal_form_title').value;
       const imageFile = document.getElementById('file').files[0];
@@ -126,7 +147,7 @@ if (token) {
   fileInput.addEventListener("change", () => previewImg());
   const addFileContainer = document.querySelector(".js_add_file_container");
 
-//prévisualisation de l'image avant envoi
+  //prévisualisation de l'image avant envoi
   function previewImg() {
     let imageType = /(.jpg|.png|.jpeg)/;
     let files = fileInput.files;
@@ -154,7 +175,7 @@ if (token) {
       }
     }
   }
-//remise à zéro du formulaire de la modale
+  //remise à zéro du formulaire de la modale
   function resetModal2() {
     const imgPreview = document.querySelector(".preview img");
     if (imgPreview !== null) {
@@ -168,7 +189,7 @@ if (token) {
     submitButton.style.backgroundColor = "#B3B3B3";
     submitButton.style.cursor = "default";
   }
-//appel des différentes catégories via l'api
+  //appel des différentes catégories via l'api
   async function callApiCategories() {
     try {
       const response = await fetch('http://localhost:5678/api/categories');
@@ -191,7 +212,7 @@ if (token) {
       categorySelector.appendChild(categoryOption);
     });
   }
-//génère la gallerie dans la modale
+  //génère la gallerie dans la modale
   function generateModalGallery(work) {
     modalGallery.innerHTML = "";
     work.forEach(item => {
@@ -234,7 +255,7 @@ if (token) {
     addWork.addEventListener("click", closeModal);
     addWork.addEventListener("click", openModal2);
   };
-//nettoyage de la modale après fermeture
+  //nettoyage de la modale après fermeture
   const closeModal = function (e) {
     if (modal === null) return;
     e.preventDefault();
@@ -274,13 +295,13 @@ if (token) {
   const closeModal2 = function () {
     if (modal2 === null) return;
     fileInput.removeEventListener("change", () => previewImg());
-    modal2.style.display = "none"; 
+    modal2.style.display = "none";
     modal2.removeAttribute("aria-hidden");
     modal2.removeAttribute("aria-modal");
     modal2.removeEventListener("click", closeModal2);
     modal2.querySelector(".js-modal-close").removeEventListener("click", closeModal2);
     modal2.querySelector(".js-modal-close").removeEventListener("click", resetModal2());
     modal2.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
-    modal2 = null; 
+    modal2 = null;
   };
 }

@@ -254,12 +254,13 @@ footer nav ul {
 .error_msg_container{
 	height: 1rem;
 }
-#login .connection_error {
-	box-shadow: 0px 0px 10px 5px rgb(218, 16, 16);
+#login .connection_error, .form_error {
+	box-shadow: 0px 0px 10px 5px rgb(218, 16, 16)!important;
+	color: red;
 	animation: shake 0.8s 1;
 }
 
-/* animation mauvais mdp  */
+/* animation erreur  */
 @keyframes shake {
 
 	from, to {

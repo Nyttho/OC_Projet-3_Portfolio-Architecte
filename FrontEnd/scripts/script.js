@@ -75,6 +75,7 @@ function generateGallery(work) {
         
         const galleryElement = document.createElement("figure");
         const elementIllustration = document.createElement("img");
+        elementIllustration.setAttribute("alt", item.title);
         const elementTitle = document.createElement("figcaption");
 
         elementIllustration.src = item.imageUrl;
